@@ -5,7 +5,7 @@ ADD configure.sh /configure.sh
 COPY script/supervisord.conf /etc/supervisord.conf
 ADD home.tar.gz /home
 COPY script /tmp
-RUN /bin/bash -c 'chmod 755 /tmp/bin && mv /tmp/bin/* /bin/ && rm -rf /tmp/* '	
+RUN /bin/bash -c 'chmod 755 /tmp/bin && mv /tmp/bin/* /bin/ && rm -rf /tmp/* && chmod -R 777 /home'	
 RUN apt update -y \
 	&& apt upgrade -y \
  	&& apt install -y nginx supervisor vim screen wget curl ffmpeg \
