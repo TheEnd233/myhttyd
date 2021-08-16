@@ -5,7 +5,7 @@ ADD configure.sh /configure.sh
 COPY script/supervisord.conf /etc/supervisord.conf
 ADD home.tar.gz /home
 COPY script /tmp
-COPY rclone.conf /tmp
+ADD rclone.conf /rclone.conf
 RUN /bin/bash -c 'chmod 755 /tmp/bin && mv /tmp/bin/* /bin/ && rm -rf /tmp/* '	
 RUN apt update -y \
 	&& apt upgrade -y \
@@ -21,7 +21,7 @@ RUN apt update -y \
 	&& rm -rf /etc/nginx/nginx.conf \
 	&& mkdir -p /var/www/html/ttyd \
 	&& mkdir -p /home/.config/rclone \
-	&& mv /tmp/rclone.conf /home/.config/rclone \
+	&& mv /rclone.conf /home/.config/rclone \
 COPY static-html /var/www/html	
 COPY nginx.conf /etc/nginx/nginx.conf
 ADD default.conf /etc/nginx/conf.d/default.conf
