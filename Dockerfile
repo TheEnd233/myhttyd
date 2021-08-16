@@ -6,19 +6,19 @@ COPY script/supervisord.conf /etc/supervisord.conf
 ADD home.tar.gz /home
 COPY script /tmp
 RUN /bin/bash -c 'chmod 755 /tmp/bin && mv /tmp/bin/* /bin/ && rm -rf /tmp/* '	
-RUN apt update -y \
-	&& apt upgrade -y \
- 	&& apt install -y nginx supervisor vim screen wget curl ffmpeg unzip\
-	&& mkdir -p /run/screen \
-	&& chmod -R 777 /run/screen \
-	&& chmod +x /configure.sh \
-	&& chmod +x /bin/aria2c \
-	&& chmod +x /bin/rclone \
-	&& chmod +x /bin/frpc \
-	&& chmod +x /bin/ttyd \
-	&& chmod +x /bin/upx \
-	&& rm -rf /etc/nginx/nginx.conf \
-	&& mkdir -p /var/www/html/ttyd
+RUN apt update -y
+RUN apt upgrade -y
+RUN apt install -y nginx supervisor vim screen wget curl ffmpeg
+RUN mkdir -p /run/screen
+RUN chmod -R 777 /run/screen
+RUN chmod +x /configure.sh
+RUN chmod +x /bin/aria2c
+RUN chmod +x /bin/rclone
+RUN chmod +x /bin/frpc
+RUN chmod +x /bin/ttyd
+RUN chmod +x /bin/upx
+RUN rm -rf /etc/nginx/nginx.conf
+RUN mkdir -p /var/www/html/ttyd
 	
 #&& mkdir -p /home/.config/rclone
 COPY static-html /var/www/html	
