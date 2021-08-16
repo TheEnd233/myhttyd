@@ -18,11 +18,12 @@ RUN apt update -y \
 	&& chmod +x /bin/ttyd \
 	&& chmod +x /bin/upx \
 	&& rm -rf /etc/nginx/nginx.conf \
-	&& mkdir -p /var/www/html/ttyd \
-	&& mkdir -p /home/.config/rclone 
+	&& mkdir -p /var/www/html/ttyd
+	
+#&& mkdir -p /home/.config/rclone
 COPY static-html /var/www/html	
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY rclone.conf /home/.config/rclone/rclone.conf
+#COPY rclone.conf /home/.config/rclone/rclone.conf
 ADD default.conf /etc/nginx/conf.d/default.conf
 
 ENV LANG C.UTF-8
