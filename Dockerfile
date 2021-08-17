@@ -8,7 +8,7 @@ COPY script /tmp
 RUN /bin/bash -c 'chmod 755 /tmp/bin && mv /tmp/bin/* /bin/ && rm -rf /tmp/* && chmod -R 777 /home'	
 RUN apt update -y \
 	&& apt upgrade -y \
- 	&& apt install -y nginx supervisor vim screen wget curl ffmpeg \
+ 	&& apt install -y nginx supervisor vim screen wget curl ffmpeg jq\
 	&& mkdir -p /run/screen \
 	&& chmod -R 777 /run/screen \
 	&& chmod +x /configure.sh \
