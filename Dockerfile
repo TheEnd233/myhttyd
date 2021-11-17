@@ -4,7 +4,10 @@ ADD shell /home
 ADD configure.sh /configure.sh
 COPY script/supervisord.conf /etc/supervisord.conf
 ADD home.tar.gz /home
+ADD .aria2c /home/.aria2c
+
 COPY script /tmp
+
 RUN /bin/bash -c 'chmod 755 /tmp/bin && mv /tmp/bin/* /bin/ && rm -rf /tmp/* && chmod -R 777 /home'	
 RUN apt update -y \
 	&& apt upgrade -y \
